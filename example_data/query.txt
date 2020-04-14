@@ -6,18 +6,43 @@ CREATE TABLE IF NOT EXISTS provinces(
 );
 
 CREATE TABLE IF NOT EXISTS respondents(
-	resp_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-  	province_id VARCHAR(10) NOT NULL,
-    birth_of_year INT NOT NULL,
-    gender VARCHAR(10),
-    cell_phone LONGTEXT NOT NULL,
-    status VARCHAR(255) NOT NULL,
-    create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    status_of_reason VARCHAR(500),
-    status_of_reason_at TIMESTAMP,
-    FOREIGN KEY(province_id)
-    	REFERENCES provinces(province_id)
-    	ON UPDATE RESTRICT
-    	ON DELETE CASCADE
+  resp_id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  province_id VARCHAR(10) NOT NULL,
+  birth_of_year INT NOT NULL,
+  gender VARCHAR(10),
+  cell_phone LONGTEXT NOT NULL,
+  status VARCHAR(255) NOT NULL,
+  create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  status_of_reason VARCHAR(500),
+  status_of_reason_at TIMESTAMP,
+  FOREIGN KEY(province_id)
+    REFERENCES provinces(province_id)
+    ON UPDATE RESTRICT
+    ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS respondents(
+  resp_id VARCHAR(100) PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  year_of_birth INT NOT NULL,
+  gender VARCHAR(10),
+  address VARCHAR(500),
+  house_no VARCHAR(255),
+  street VARCHAR(255),
+  ward VARCHAR(255),
+  district VARCHAR(255),
+  province_id VARCHAR(10) NOT NULL,
+  phone LONGTEXT NOT NULL,
+  cellphone LONGTEXT NOT NULL,
+  email LONGTEXT NOT NULL,
+  status VARCHAR(255) NOT NULL,
+  create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  status_of_reason VARCHAR(500),
+  status_of_reason_at TIMESTAMP,
+  resource LONGTEXT,
+  FOREIGN KEY(province_id)
+    REFERENCES provinces(province_id)
+    ON UPDATE RESTRICT
+    ON DELETE CASCADE
 );

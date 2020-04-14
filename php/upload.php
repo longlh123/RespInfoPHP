@@ -15,21 +15,46 @@
             {
                 if($c > 0)
                 { 
-                    $resp_name = $filesop[0];
-                    $province_id = $filesop[1];
+                    $resp_id = $filesop[0];
+                    $name = $filesop[1];
                     $year_of_birth = $filesop[2];
                     $gender = $filesop[3];
-                    $cell_phone = md5($filesop[4]);
-                    $active = 'active';
+                    $address = $filesop[4];
+                    $house_no = $filesop[5];
+                    $street = $filesop[6];
+                    $ward = $filesop[7];
+                    $district = $filesop[8];
+                    $province_id = $filesop[9];
+
+                    $phone = $email = $resource = "";
+
+                    if(strlen($filesop[10]) > 0)
+                    {
+                        $phone = md5($filesop[10]);
+                    }
                     
-                    $sql_select = "SELECT * FROM respondents WHERE cell_phone LIKE '$cell_phone';";
+                    $cellphone = md5($filesop[11]);
+                    
+                    if(strlen($filesop[12]) > 0)
+                    {
+                        $email = md5($filesop[12]);
+                    }
+                    
+                    if(strlen($filesop[13]) > 0)
+                    {
+                        $resource = md5($filesop[13]);
+                    }
+                    
+                    $status = 'active';
+                    
+                    $sql_select = "SELECT * FROM respondents WHERE cellphone LIKE '$cellphone';";
 
                     $result = mysqli_query($conn, $sql_select);
                     $resultCheck = mysqli_num_rows($result);
 
                     if($resultCheck === 0)
                     {
-                        $sql_insert = "insert into respondents(name,province_id,birth_of_year,gender,cell_phone,status) values('$resp_name','$province_id',$year_of_birth,'$gender','$cell_phone','$active')";
+                        $sql_insert = "insert into respondents(resp_id,name,year_of_birth,gender,address,house_no,street,ward,district,province_id,phone,cellphone,email,resource,status) values('$resp_id','$name',$year_of_birth,'$gender','$address','$house_no','$street','$ward','$district','$province_id','$phone','$cellphone','$email','$resource','$status')";
                     
                         $stmt = mysqli_prepare($conn, $sql_insert);
                         mysqli_stmt_execute($stmt);
