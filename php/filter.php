@@ -67,7 +67,7 @@
                             $sql_select = $sql_select . " AND gender LIKE '$gender'";
                         }
 
-                        $sql_select = $sql_select . " AND (birth_of_year >= $min_age AND birth_of_year <= $max_age)";
+                        $sql_select = $sql_select . " AND (year_of_birth >= $min_age AND year_of_birth <= $max_age)";
 
                         $sql_select = $sql_select . ";";
 

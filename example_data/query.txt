@@ -40,7 +40,8 @@ CREATE TABLE IF NOT EXISTS respondents(
   create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   status_of_reason VARCHAR(500),
   status_of_reason_at TIMESTAMP,
-  resource LONGTEXT,
+  resource_projectid VARCHAR(500),
+  resource_id VARCHAR(500),
   FOREIGN KEY(province_id)
     REFERENCES provinces(province_id)
     ON UPDATE RESTRICT

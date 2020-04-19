@@ -40,10 +40,8 @@
                         $email = md5($filesop[12]);
                     }
                     
-                    if(strlen($filesop[13]) > 0)
-                    {
-                        $resource = md5($filesop[13]);
-                    }
+                    $resource_projectid = $filesop[13];
+                    $resource_id = $filesop[14];
                     
                     $status = 'active';
                     
@@ -54,7 +52,7 @@
 
                     if($resultCheck === 0)
                     {
-                        $sql_insert = "insert into respondents(resp_id,name,year_of_birth,gender,address,house_no,street,ward,district,province_id,phone,cellphone,email,resource,status) values('$resp_id','$name',$year_of_birth,'$gender','$address','$house_no','$street','$ward','$district','$province_id','$phone','$cellphone','$email','$resource','$status')";
+                        $sql_insert = "insert into respondents(resp_id,name,year_of_birth,gender,address,house_no,street,ward,district,province_id,phone,cellphone,email,resource_projectid,resource_id,status) values('$resp_id','$name',$year_of_birth,'$gender','$address','$house_no','$street','$ward','$district','$province_id','$phone','$cellphone','$email','$resource_projectid','$resource_id','$status')";
                     
                         $stmt = mysqli_prepare($conn, $sql_insert);
                         mysqli_stmt_execute($stmt);

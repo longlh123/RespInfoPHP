@@ -1,3 +1,2 @@
 # CompanyTemplate
-
-1. Test connect.
+Create a template for company

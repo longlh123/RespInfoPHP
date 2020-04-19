@@ -1,1 +1,3 @@
-﻿resp_id,name,birth_of_year,gender,address,house_no,street,ward,district,province_id,phone,cellphone,email
+﻿name,province,birth_of_year,gender,cell_phone,status
+Nguyễn Văn A,1,1990,Nam,0938383838,active
+Nguyễn Văn B,2,1980,Nữ,0938121212,active
