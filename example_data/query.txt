@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS db_panel;
 
 CREATE TABLE IF NOT EXISTS provinces(
 	province_id VARCHAR(10) PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
+  name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS respondents(
@@ -20,6 +20,11 @@ CREATE TABLE IF NOT EXISTS respondents(
     REFERENCES provinces(province_id)
     ON UPDATE RESTRICT
     ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS projects(
+  project_id VARCHAR(50) NOT NULL PRIMARY KEY,
+  description VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS respondents(
@@ -40,10 +45,15 @@ CREATE TABLE IF NOT EXISTS respondents(
   create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   status_of_reason VARCHAR(500),
   status_of_reason_at TIMESTAMP,
-  resource_projectid VARCHAR(500),
-  resource_id VARCHAR(500),
+  project_id VARCHAR(50) NOT NULL,
+  instance_id VARCHAR(255),
+  shell_chainid VARCHAR(255),
   FOREIGN KEY(province_id)
     REFERENCES provinces(province_id)
+    ON UPDATE RESTRICT
+    ON DELETE CASCADE,
+  FOREIGN KEY(project_id)
+    REFERENCES projects(project_id)
     ON UPDATE RESTRICT
     ON DELETE CASCADE
 );

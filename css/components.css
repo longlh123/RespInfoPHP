@@ -1,0 +1,96 @@
+/*
+#############################################
+
+#############################################
+*/
+
+.tbl-default{
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.tbl-default th,td{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	padding: 5px 5px;
+	border: 1px solid #000;
+	overflow: hidden;
+	word-break: normal;
+}
+
+.error{
+	color: #ff0000;
+	font-weight: normal;
+	font-size: 12px;
+	font-style: italic;
+}
+
+/*## START BUTTON  ##*/
+.btn-default{
+	font-size: 1.25rem;
+	font-weight: 700;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: white;
+	background-color: rgb(0, 149, 255);
+	display: inline-block;
+	padding: 0.625rem 1.25rem;
+	cursor: pointer;
+}
+
+input[type="submit"]:hover{
+	background-color: rgb(2, 134, 228);
+}
+/*##  END BUTTON  ##*/
+
+/*##  START INPUT FILE  ##*/
+
+/*hiding the <input>*/
+.inputfile{
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+/*Styling the <label>*/
+.inputfile + label{
+	font-size: 1.25rem; /*20px*/
+	font-weight: 700;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: white;
+	background-color: black;
+	display: inline-block;
+	padding: 0.625rem 1.25rem; /*10px 20px*/
+}
+
+.inputfile:focus + label, 
+.inputfile + label:hover{
+	background-color: red;
+}
+/*Accessibility*/
+.inputfile + label{
+	cursor: pointer;
+}
+/*Keyboard Navigator*/
+.inputfile:focus + label{
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+.inputfile + label svg{
+	width: 1em;
+	height: 1em;
+	vertical-align: middle;
+	fill: currentColor;
+	margin-top: -0.25rem;
+	margin-right: 0.25rem;
+}
+
+/*##  END INPUT FILE  ##*/
+
+
+
+
+
