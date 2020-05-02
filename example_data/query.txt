@@ -43,8 +43,6 @@ CREATE TABLE IF NOT EXISTS respondents(
   email LONGTEXT NOT NULL,
   status VARCHAR(255) NOT NULL,
   create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  status_of_reason VARCHAR(500),
-  status_of_reason_at TIMESTAMP,
   project_id VARCHAR(50) NOT NULL,
   instance_id VARCHAR(255),
   shell_chainid VARCHAR(255),
@@ -57,3 +55,42 @@ CREATE TABLE IF NOT EXISTS respondents(
     ON UPDATE RESTRICT
     ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS respondents_histories(
+	resp_id VARCHAR(100) NOT NULL,
+    project_id VARCHAR(50) NOT NULL,
+    participate_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status_of_contact VARCHAR(500),
+    FOREIGN KEY(resp_id)
+    	REFERENCES respondents(resp_id)
+    	ON UPDATE RESTRICT
+    	ON DELETE CASCADE,
+    FOREIGN KEY(project_id)
+    	REFERENCES projects(project_id)
+    	ON UPDATE RESTRICT
+    	ON DELETE CASCADE
+);
+
+SELECT gender, provinces.province_id, provinces.name, COUNT(resp_id) 
+FROM respondents
+INNER JOIN provinces ON provinces.province_id = respondents.province_id
+GROUP BY gender, province_id
+ORDER BY CAST(provinces.province_id AS UNSIGNED), gender
+
+1. Tìm status of contact của tất cả các đáp viên tham gia dự án gần nhất.
+
+SELECT * FROM respondents_histories 
+INNER JOIN (SELECT resp_id, MAX(participate_at) AS participate_at
+                    FROM respondents_histories
+                    GROUP BY(resp_id)) max_participate 
+ON respondents_histories.resp_id = max_participate.resp_id AND respondents_histories.participate_at = max_participate.participate_at
+WHERE respondents_histories.resp_id LIKE 'VN02000000000006'
+
+2. Sau đó, thống kê số liệu status of contact của tất cả các cuộc gọi.
+
+SELECT respondents_histories.status_of_contact, Count(*) AS number_of_respondents FROM respondents_histories 
+INNER JOIN (SELECT resp_id, MAX(participate_at) AS participate_at
+                    FROM respondents_histories
+                    GROUP BY(resp_id)) max_participate 
+ON respondents_histories.resp_id = max_participate.resp_id AND respondents_histories.participate_at = max_participate.participate_at
+GROUP BY respondents_histories.status_of_contact
