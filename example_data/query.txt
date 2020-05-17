@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS respondents(
   phone LONGTEXT NOT NULL,
   cellphone LONGTEXT NOT NULL,
   email LONGTEXT NOT NULL,
+  householeincome VARCHAR(500),
   status VARCHAR(255) NOT NULL,
   create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   project_id VARCHAR(50) NOT NULL,
@@ -94,3 +95,13 @@ INNER JOIN (SELECT resp_id, MAX(participate_at) AS participate_at
                     GROUP BY(resp_id)) max_participate 
 ON respondents_histories.resp_id = max_participate.resp_id AND respondents_histories.participate_at = max_participate.participate_at
 GROUP BY respondents_histories.status_of_contact
+
+
+SELECT P.name AS Province, R.gender AS Gender, Count(*) AS Count FROM respondents AS R
+INNER JOIN provinces AS P ON P.province_id = R.province_id
+GROUP BY P.name, R.gender
+
+SELECT province_id, MAX(CONVERT(SUBSTRING(resp_id, 5, LENGTH(resp_id) - 4),UNSIGNED INTEGER)) AS id_max 
+FROM respondents
+GROUP BY province_id
+ORDER BY CAST(province_id AS UNSIGNED)
