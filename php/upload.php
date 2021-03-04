@@ -1,6 +1,6 @@
 <?php
     include_once 'config.php';
-    include_once '../php_excel/Classes/PHPExcel.php';
+    //include_once '../php_excel/Classes/PHPExcel.php';
 
     $allowed_file_type = ['text/csv'];
 
@@ -204,6 +204,7 @@
 		<meta chatset='utf-8'>
 		<meta name='viewport' content='width=device-width, initial-scale=1'>
 
+        <link rel='stylesheet' type='text/css' href='../bootstrap-4.1.3-dist/css/bootstrap.min.css'>
         <link rel='stylesheet' type='text/css' href='../css/components.css'>
 	</head>
 	<body>
@@ -443,6 +444,9 @@
                 }
             ?>
 
+            <!--Optional Boostrap-->
+            <script type="text/javascript" src="../jquery/jquery-3.6.0.min.js">
+            <script type="text/javascript" src="../bootstrap-4.1.3-dist/js/bootstrap.min.css"></script>
             <script type="text/javascript" src="../js/components.js"></script>
         </form>
 	</body>
