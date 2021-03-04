@@ -2,7 +2,7 @@
     define('DB_SERVER', 'localhost');
     define('DB_USERNAME', 'root');
     define('DB_PASSWORD', '');
-    define('DB_NAME', 'dp_panel');
+    define('DB_NAME', 'respondents_panel');
 
     /*Attempt to connect to MySql database*/
     $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
